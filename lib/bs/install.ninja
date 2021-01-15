@@ -1,0 +1,17 @@
+rescript = 1
+rule cp
+  command = cp $i $out
+rule touch
+ command = touch $out
+o index-Nonsense.cmi : cp ../bs/src/index-Nonsense.cmi
+o index-Nonsense.cmj : cp ../bs/src/index-Nonsense.cmj
+o index-Nonsense.cmt : cp ../bs/src/index-Nonsense.cmt
+o index.re : cp ../../src/index.re
+o Nonsense-Nonsense.cmi : cp ../bs/src/Nonsense-Nonsense.cmi
+o Nonsense-Nonsense.cmj : cp ../bs/src/Nonsense-Nonsense.cmj
+o Nonsense-Nonsense.cmt : cp ../bs/src/Nonsense-Nonsense.cmt
+o Nonsense.re : cp ../../src/Nonsense.re
+o Nonsense.cmi : cp ../bs/Nonsense.cmi
+o Nonsense.cmj : cp ../bs/Nonsense.cmj
+o Nonsense.cmt : cp ../bs/Nonsense.cmt
+build install.stamp : touch index-Nonsense.cmi index-Nonsense.cmj Nonsense-Nonsense.cmi Nonsense-Nonsense.cmj Nonsense.cmi Nonsense.cmj

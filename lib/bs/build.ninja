@@ -1,0 +1,22 @@
+rescript = 1
+g_finger := /Users/ajitesh/Documents/invideo-workspace/nonsense/node_modules/reason-react/lib/ocaml/install.stamp
+g_finger := /Users/ajitesh/Documents/invideo-workspace/nonsense/node_modules/bs-fetch/lib/ocaml/install.stamp
+rule astj
+  command = /Users/ajitesh/Documents/invideo-workspace/nonsense/node_modules/bs-platform/darwin/bsc.exe  -bs-v 8.4.2 -bs-jsx 3  -absname -bs-ast -o $out $i
+o src/index.ast : astj ../../src/index.re
+rule deps
+  command = /Users/ajitesh/Documents/invideo-workspace/nonsense/node_modules/bs-platform/darwin/bsb_helper.exe -hash 6d2b9f978451a82dd63e6884cbe95974 -bs-ns Nonsense $in
+  restat = 1
+o src/index.d : deps src/index.ast
+rule mij
+  command = /Users/ajitesh/Documents/invideo-workspace/nonsense/node_modules/bs-platform/darwin/bsc.exe -bs-ns Nonsense -I . -I src -I /Users/ajitesh/Documents/invideo-workspace/nonsense/node_modules/reason-react/lib/ocaml -I /Users/ajitesh/Documents/invideo-workspace/nonsense/node_modules/bs-fetch/lib/ocaml   -bs-package-name nonsense -bs-package-output commonjs:$in_d:.bs.js -bs-v $g_finger $i
+  dyndep = 1
+  restat = 1
+o src/index-Nonsense.cmj src/index-Nonsense.cmi ../../src/index.bs.js : mij src/index.ast
+o src/Nonsense.ast : astj ../../src/Nonsense.re
+o src/Nonsense.d : deps src/Nonsense.ast
+o src/Nonsense-Nonsense.cmj src/Nonsense-Nonsense.cmi ../../src/Nonsense.bs.js : mij src/Nonsense.ast
+rule build_package
+  command = /Users/ajitesh/Documents/invideo-workspace/nonsense/node_modules/bs-platform/darwin/bsc.exe -w -49 -color always -no-alias-deps  $i
+  restat = 1
+o Nonsense.cmi : build_package Nonsense.mlmap
